@@ -12,7 +12,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel>
-            <TextBlock Name="mtextblock" Text="{Binding Text, Converter={StaticResource mconverter}, ElementName=mtextbox}" />
+            <TextBlock Name="mtextblock" Text="{Binding Text, Converter={StaticResource mconverter}, ElementName=mtextbox, Mode=OneWay}" />
             <TextBox  Name="mtextbox" />
             <Button Name="mbutton" Content="添加" Width="80" Click="mbutton_Click"/>
             

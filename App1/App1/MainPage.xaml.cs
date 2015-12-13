@@ -75,7 +75,7 @@ namespace App1
                 return value.ToString() + "牌";
             }
         }
-
+              
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             return value.ToString();
