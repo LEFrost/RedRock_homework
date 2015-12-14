@@ -74,9 +74,9 @@ namespace App1
         {
 
             mOC.Clear();
-            mlistView.ItemsSource=mOC;
+            //mlistView.ItemsSource = mOC;
 
-            
+
         }
     }
     public class test
