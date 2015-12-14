@@ -14,18 +14,22 @@
         <StackPanel>
             <TextBlock Name="mtextblock" Text="{Binding Text, Converter={StaticResource mconverter}, ElementName=mtextbox, Mode=OneWay}" />
             <TextBox  Name="mtextbox" />
-            <Button Name="mbutton" Content="添加" Width="80" Click="mbutton_Click"/>
             
-                <ListView  Name="mlistView" IsItemClickEnabled="True" ItemClick="mlistView_ItemClick" >
-                    <ListView.ItemTemplate >
-                        <DataTemplate >
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="mbutton" Content="添加" Width="80"   Click="mbutton_Click"/>
+                <Button x:Name="mClear" Content="清空列表" Click="mClear_Click" Margin="100,0,0,0"/>
+            </StackPanel>
+            
+            <ListView  Name="mlistView" IsItemClickEnabled="True" ItemClick="mlistView_ItemClick" >
+                   <ListView.ItemTemplate >
+                     <DataTemplate >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Assets/psb.gif" Width="30" Height="30" Stretch="UniformToFill"/>
                             <TextBlock Text="{Binding Path=Text}" />
                         </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             
         </StackPanel>
     </Grid>

@@ -32,24 +32,51 @@ namespace App1
         public ObservableCollection<test> mOC = new ObservableCollection<test>();
 
 
-        private  void mbutton_Click(object sender, RoutedEventArgs e)
+
+        private async void mbutton_Click(object sender, RoutedEventArgs e)
         {
+
+            int j = 0;
+            int I = 0;//记录哪出现了重复
+            for (int i = 0; i < mOC.Count; i++)//判断是否有重复
+            {
+                if (mtextbox.Text == mOC[i].Text)
+                {
+                    j++;
+                    I = i + 1;
+
+                }
+            }
             if (mtextbox.Text == "")
             {
-                
             }
             else
             {
-                mOC.Add(new test { Text = mtextbox.Text });
-                mlistView.ItemsSource = mOC;
-          
+                if (j >= 1)
+                    await new MessageDialog("输入的数字在第" + I + "行已出现").ShowAsync();
+                else
+                {
+                    mOC.Add(new test { Text = mtextbox.Text });
+                    mlistView.ItemsSource = mOC;
+                }
+
             }
+            mtextbox.Text = "";
 
         }
 
         private async void mlistView_ItemClick(object sender, ItemClickEventArgs e)
         {
             await new MessageDialog(((test)e.ClickedItem).Text).ShowAsync();
+        }
+
+        private void mClear_Click(object sender, RoutedEventArgs e)
+        {
+
+            mOC.Clear();
+            mlistView.ItemsSource=mOC;
+
+            
         }
     }
     public class test
@@ -63,10 +90,10 @@ namespace App1
     }
     public class mconverter : IValueConverter
     {
-        
+
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if(value=="")
+            if ((string)value == "")
             {
                 return value.ToString();
             }
@@ -75,7 +102,7 @@ namespace App1
                 return value.ToString() + "牌";
             }
         }
-              
+
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             return value.ToString();
